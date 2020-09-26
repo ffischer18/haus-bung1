@@ -13,10 +13,12 @@ import java.util.List;
  * @author fisch
  */
 public class EratosthenesPrimeSieve implements PrimeSieve {
+
     List<Integer> primes = new ArrayList<>();
+    private int limit = 100;
 
     public EratosthenesPrimeSieve(int limit) {
-        limit = 100;
+        this.limit = limit;
     }
 
     @Override
@@ -26,12 +28,17 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
                 return false;
             }
         }
+        primes.add(p);
         return true;
     }
 
     @Override
     public void printPrimes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (primes.size() < limit) {
+            for (Integer prime : primes) {
+                System.out.println(prime);
+            }
+        }
     }
 
 }
