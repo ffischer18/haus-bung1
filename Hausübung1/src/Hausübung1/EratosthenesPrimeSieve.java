@@ -5,22 +5,33 @@
  */
 package Hausübung1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author fisch
  */
-public class EratosthenesPrimeSieve implements PrimeSieve{
+public class EratosthenesPrimeSieve implements PrimeSieve {
+    List<Integer> primes = new ArrayList<>();
 
-    
-    
+    public EratosthenesPrimeSieve(int limit) {
+        limit = 100;
+    }
+
     @Override
     public boolean isPrime(int p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (int i = 3; i < Math.sqrt(p) + 1; i++) {
+            if (p % i == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
     public void printPrimes() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
