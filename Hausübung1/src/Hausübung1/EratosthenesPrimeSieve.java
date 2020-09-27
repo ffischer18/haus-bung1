@@ -74,4 +74,7 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
         return zahlenListe;
     }
 
+    public void sumPrimes(int o){
+        
+    }
 }
