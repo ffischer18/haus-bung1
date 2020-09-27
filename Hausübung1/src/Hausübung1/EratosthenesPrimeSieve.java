@@ -14,8 +14,8 @@ import java.util.List;
  */
 public class EratosthenesPrimeSieve implements PrimeSieve {
 
-    List<Integer> primes = new ArrayList<>();
     private int limit = 100;
+    List<Boolean> primes = aussieben(limit);
 
     public EratosthenesPrimeSieve(int limit) {
         this.limit = limit;
@@ -23,22 +23,55 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
 
     @Override
     public boolean isPrime(int p) {
-        for (int i = 3; i < Math.sqrt(p) + 1; i++) {
+        // Wenn p kleiner/gleich 2 wird es auf 2 gesetzt (2 kleinste Primzahl)
+        if (p <= 2) {
+            return (p == 2);
+        }
+        // Es wird geprüft ob p ein Vielfaches von i ist und ob die zahl durch 2 teilbar ist
+        for (int i = 2; i * i <= p; i++) {
             if (p % i == 0) {
                 return false;
             }
         }
-        primes.add(p);
         return true;
     }
 
     @Override
     public void printPrimes() {
-        if (primes.size() < limit) {
-            for (Integer prime : primes) {
-                System.out.println(prime);
+        // Alle Zahlen von 1 - 100 (limit) ausgeben die Primzahlen sind
+        System.out.println("Primzahlen sind: ");
+        for (int i = 0; i <= limit; i++) {
+            // Wenn in der Liste die Werte auf true gestzt sind und i größer 1 ist werden diese Zahlen ausgegeben
+            if (primes.get(i) == true && i > 1) {
+                System.out.print(i + " ");
             }
         }
+    }
+
+    private static ArrayList<Boolean> aussieben(int zahl) {
+        ArrayList<Boolean> zahlenListe = new ArrayList<Boolean>();
+
+        // Füllt die neue Liste mit lauter true Elementen
+        for (int i = 0; i <= zahl; i++) {
+            zahlenListe.add(i, true);
+        }
+
+        for (int i = 2; i <= zahl; i++) {
+
+            if (zahlenListe.get(i) == true) {
+                int j = i;
+                do {
+                    j = j + i;
+                    if (j <= zahl) {
+                        // Ist die Zahl ein Vielfaches einer Primzahl,
+                        // dann wird sie mit false markiert
+                        zahlenListe.set(j, false);
+                    }
+                } while (j <= zahl);
+            }
+
+        }
+        return zahlenListe;
     }
 
 }

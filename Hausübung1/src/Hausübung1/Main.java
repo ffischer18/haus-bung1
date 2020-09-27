@@ -5,6 +5,8 @@
  */
 package Hausübung1;
 
+import java.util.Scanner;
+
 /**
  *
  * @author fisch
@@ -15,7 +17,40 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Scanner sc = new Scanner(System.in);
+        EratosthenesPrimeSieve ep = new EratosthenesPrimeSieve(100);
+
+        while (true) {
+            System.out.println("");
+            System.out.println("1 ... Primzahl prüfen");
+            System.out.println("2 ... Primzahlen ausgeben");
+            System.out.println("9 ... Beenden");
+            System.out.println("-------------------------");
+            int input = Integer.parseInt(sc.nextLine());
+            switch(input){
+                case 1:
+                    System.out.print("Primzahl? -> ");
+                    int primzahl = Integer.parseInt(sc.nextLine());
+                    if(ep.isPrime(primzahl) == true){
+                        System.out.println(primzahl + " ist eine Primzahl");
+                    }
+                    else if(ep.isPrime(primzahl) == false){
+                        System.out.println(primzahl + " ist keine Primzahl");
+                    }
+                    break;
+                
+                case 2:
+                    ep.printPrimes();
+                    break;
+                
+                case 9:
+                    System.exit(0);
+                
+                default:
+                    System.out.println("Falsche eingabe");
+                    break;
+            }
+        }
     }
-    
+
 }
