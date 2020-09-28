@@ -74,7 +74,16 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
         return zahlenListe;
     }
 
-    public void sumPrimes(int o){
-        
+    public void sumPrimes(int o) {
+        List<Integer> numbers = new ArrayList<>();
+
+        // Füllt die neue Liste mit geraden Zahlen bis zur Obergrenze
+        for (int i = 2; i < o; i++) {
+            if (i % 2 == 0) {
+                numbers.add(i);
+            } else {
+                break;
+            }
+        }
     }
 }
