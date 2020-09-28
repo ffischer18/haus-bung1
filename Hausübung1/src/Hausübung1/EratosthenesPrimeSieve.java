@@ -75,25 +75,38 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
     }
 //2 Beispiel
     public void sumPrimes(int o) {
-        List<Integer> numbers = new ArrayList<>();
-        
         // Füllt die neue Liste mit geraden Zahlen bis zur Obergrenze
-        for (int i = 2; i < o; i++) {
+        List<Integer> numbers = new ArrayList<>();
+        for (int i = 4; i <= o; i++) {
             if (i % 2 == 0) {
                 numbers.add(i);
             }
         }
         
-        // Füllt die neue Liste mit allen Zahlen bis zur Obergrenze
-        List<Integer> prime = new ArrayList<>();
-        for (int i = 0; i < o; i++) {
-            prime.add(i);
-        }
-        // Primzahlen prüfen und nicht Primzahlen löschen
-        for (int i = 0; i < o; i++) {
-            if(isPrime(prime.get(i)) == false){
-                prime.remove(i);
+        // Holt sich die liste von getPrimes()
+        List<Integer> prime = getPrimes();
+        
+        for (int i = 0; i < numbers.size(); i++) {
+            for (int j = 0; j < prime.size(); j++) {
+                // Berechnet die Differenz von einer Geraden zahl - der Primzahl ->
+                int diff = numbers.get(i) - prime.get(j);
+                //  Wenn Ergebnis Primzahl dann ausgeben ansonsten wiederholen
+                if(prime.contains(diff) == true){
+                    System.out.println(numbers.get(i) + " summe: " + diff + " + " + prime.get(j));
+                    break;
+                }
             }
         }
+    }
+    
+    private List <Integer> getPrimes() {
+        List<Integer> primeList = new ArrayList<>();
+        for (int i = 0; i <= limit; i++) {
+            // Wenn in der Liste die Werte auf true gestzt sind und i größer 1 ist werden diese Zahlen in die List gespeichert
+            if (primes.get(i) == true && i > 1) {
+                primeList.add(i);
+            }
+        }
+        return primeList;
     }
 }
