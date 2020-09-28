@@ -24,6 +24,7 @@ public class Main {
             System.out.println("");
             System.out.println("1 ... Primzahl prüfen");
             System.out.println("2 ... Primzahlen ausgeben");
+            System.out.println("3 ... Summe mit Primzahlen berechnen");
             System.out.println("9 ... Beenden");
             System.out.println("-------------------------");
             int input = Integer.parseInt(sc.nextLine());
@@ -41,6 +42,12 @@ public class Main {
                 
                 case 2:
                     ep.printPrimes();
+                    break;
+                    
+                case 3:
+                    System.out.print("Bis zur welcher zahl soll die Summe berechnet werden? -> ");
+                    int oZahl = Integer.parseInt(sc.nextLine());
+                    ep.sumPrimes(oZahl);
                     break;
                 
                 case 9:
