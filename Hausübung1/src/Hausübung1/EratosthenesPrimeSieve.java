@@ -13,7 +13,7 @@ import java.util.List;
  * @author fisch
  */
 public class EratosthenesPrimeSieve implements PrimeSieve {
-
+//1 Beispiel
     private int limit = 100;
     List<Boolean> primes = aussieben(limit);
 
@@ -73,16 +73,26 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
         }
         return zahlenListe;
     }
-
+//2 Beispiel
     public void sumPrimes(int o) {
         List<Integer> numbers = new ArrayList<>();
-
+        
         // Füllt die neue Liste mit geraden Zahlen bis zur Obergrenze
         for (int i = 2; i < o; i++) {
             if (i % 2 == 0) {
                 numbers.add(i);
-            } else {
-                break;
+            }
+        }
+        
+        // Füllt die neue Liste mit allen Zahlen bis zur Obergrenze
+        List<Integer> prime = new ArrayList<>();
+        for (int i = 0; i < o; i++) {
+            prime.add(i);
+        }
+        // Primzahlen prüfen und nicht Primzahlen löschen
+        for (int i = 0; i < o; i++) {
+            if(isPrime(prime.get(i)) == false){
+                prime.remove(i);
             }
         }
     }
